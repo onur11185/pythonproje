@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Text</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/translate.css"> <!-- New CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script>
+      function setLanguage(lang) {
+        document.getElementById('lang-hidden').value = lang;
+      }
+    </script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <div class="menu"><span>MENU</span></div>
+      <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
+      <li><a href="/summarize"><i class="fas fa-cogs"></i> Summarize</a></li>
+      <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+      <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
+      <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
+      <li><a href="/translate"><i class="fab fa-gripfire"></i> Translate</a></li>
+      <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrapper">
+    <div class="section">
+      <div class="box-area">
+        <h2 style="color: #9294A3">Text Translation</h2>
+        <p>Choose the language you wrote in and the language you want to translate to. Then, click 'Translate'.</p>
+
+        <form method="POST" action="/translate">
+          <div class="translate-settings">
+            <label for="source-language">Source language:</label>
+            <select id="source-language" name="source_language">
+              <option value="english">English</option>
+              <option value="turkish">Turkish</option>
+              <!-- Add more languages as needed -->
+            </select>
+
+            <label for="target-language">Target language:</label>
+            <select id="target-language" name="target_language">
+              <option value="english">English</option>
+              <option value="turkish">Turkish</option>
+              <!-- Add more languages as needed -->
+            </select>
+
+            <textarea id="text-to-translate" name="source_text" placeholder="Enter text to translate..." rows="4" required></textarea>
+
+            <input type="hidden" id="lang-hidden" name="hidden_language" value="{{ source_language }}">
+
+            <button type="submit" class="buttonnn">Translate</button>
+
+            {% if translated_text %}
+            <div class="translation-result">
+              <h3>Translated text: {{ translated_text }}</h3>
+            </div>
+            {% endif %}
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

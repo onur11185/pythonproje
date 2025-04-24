@@ -1,0 +1,52 @@
+/* Language select dropdown style */
+#source-language, #target-language {
+    padding: 10px;
+    margin-top: 15px; /* Space between label and dropdown */
+    font-size: 16px;
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff;
+    width: 200px; /* Consistent width */
+}
+
+/* Label styling for the language dropdowns */
+label {
+    color: #9294A3; /* Grayish color for labels */
+    font-size: 14px;
+}
+
+/* Button styling */
+.buttonnn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.buttonnn:hover {
+    background-color: #45a049;
+}
+
+/* Textarea styling */
+#text-to-translate {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin-top: 15px;
+}
+
+/* Translation result */
+.translation-result {
+    margin-top: 20px;
+}
+
+.translation-result h3 {
+    color: #444;
+}

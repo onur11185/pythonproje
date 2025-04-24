@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use AI Features</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <nav>
+    <ul>
+      <div class="menu"><span>MENU</span></div>
+      <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
+      <li><a href="/summarize"><i class="fas fa-cogs"></i> Summarize</a></li>
+      <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+      <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
+      <li><a href="/deletebackround"><i class="fa fa-address-book"></i> Delete Background</a></li>
+      <li><a href="/translate"><i class="fab fa-gripfire"></i> Translate</a></li>
+      <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrapper">
+    <div class="section">
+      <div class="box-area">
+        <h2 style="color: #9294A3">Change the Background of a Transparent Image</h2>
+        <form action="/changebackround" method="POST" enctype="multipart/form-data">
+          <label for="imageUpload" class="custom-file-upload">
+            <i class="fas fa-cloud-upload-alt"></i> Choose Transparent Image
+          </label>
+          <input id="imageUpload" type="file" name="image" accept="image/*" required>
+
+          <label for="bgUpload" class="custom-file-upload" style="margin-top: 10px;">
+            <i class="fas fa-image"></i> Choose New Background
+          </label>
+          <input id="bgUpload" type="file" name="background" accept="image/*" required>
+
+          <button type="submit">Upload & Replace Background</button>
+        </form>
+
+        {% if result_image %}
+          <h3>Image with New Background:</h3>
+          <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="Result Image">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use AI features</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <ul>
+      <div class="menu"><span>MENU</span></div>
+      <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
+      <li><a href="/summarize"><i class="fas fa-cogs"></i> Summarize</a></li>
+      <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+      <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
+      <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
+      <li><a href="/translate"><i class="fab fa-gripfire"></i> Translate</a></li>
+      <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrapper">
+      <div class="section">
+        <div class="box-area">
+          <h2 style="color: #9294A3; text-align: center;">Summarize Your Text</h2>
+          <p style="text-align: center; font-size: 1.2rem; color: #555;">Type your text here:</p>
+
+          <form method="POST">
+            <textarea class="textareaa" name="text" rows="10" cols="80" placeholder="Paste your text here..." required></textarea><br><br>
+            <button type="submit">Summarize</button>
+          </form>
+
+          {% if summary %}
+            <h3>Summary:</h3>
+            <p>{{ summary }}</p>
+          {% endif %}
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>
