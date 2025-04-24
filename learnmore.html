@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use AI Features</title>
+    <title>Use AI features</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -22,24 +22,26 @@
     </ul>
   </nav>
 
-
   <div class="wrapper">
-    <div class="section">
-      <div class="box-area">
-      <h2 style="color: #9294A3">Upload an Image to Remove Background</h2>
-      <form action="/deletebackround" method="POST" enctype="multipart/form-data">
-        <label for="imageUpload" class="custom-file-upload">
-          <i class="fas fa-cloud-upload-alt"></i> Choose Image
-        </label>
-        <input id="imageUpload" type="file" name="image" accept="image/*" required>
-        <button type="submit">Upload and Remove Background</button>
-      </form>
-      {% if result_image %}
-        <h3>Processed Image:</h3>
-        <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="Processed Image">
-      {% endif %}
-    </div>
+      <div class="section">
+        <div class="box-area">
+          <h1 class="learn-title">LEARN MORE</h1>
+          <h2 class="explanationss">ABOUT ME</h2>
+          <h3 class="explanationss">I'm Onur Aydın Rasullu, a 13-year-old aspiring developer. I'm passionate about coding, especially in website development and AI, and I'm always looking to improve my skills. I also know LUA and have experience with Roblox game development.</h3>
+          <h2 class="explanationss">You Can Reach Me From:</h2>
+          <div style="text-align: center; margin-top: 20px;">
+            <!-- Instagram link with username -->
+            <a href="https://www.instagram.com/onurverstappen" target="_blank" class="explanationss">
+              <i class="fab fa-instagram"></i> onurverstappen
+            </a><br>
+            <a href="https://github.com/onur11185" target="_blank" class="explanationss">
+              <i class="fab fa-github"></i> onur11185
+            </a><br>
+          </div>
+
+        </div>
+      </div>
   </div>
-</div>
+
 </body>
 </html>

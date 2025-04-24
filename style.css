@@ -141,14 +141,14 @@ nav ul li a:hover::before{
     font-size: 1.5rem;
     font-weight: 250;
     color: #333;
-    margin: 60px 0; /* Keep the space between explanations even */
+    margin: 60px 0; 
     letter-spacing: 0.5px;
     text-align: center;
     padding-left: 20px;
     padding-top: 25px;
 }
 
-/* Style the box area (optional but looks better) */
+
 .box-area {
     background-color: #f5f5f5;
     padding: 30px;
@@ -186,23 +186,22 @@ nav ul li a:hover::before{
     background-color: #555;
   }
 
-  /* Increase height of the heading */
+
 .box-areaa h2 {
-    font-size: 3rem;  /* Make the heading larger */
-    margin-bottom: 20px; /* Add space below the heading */
+    font-size: 3rem;  
+    margin-bottom: 20px; 
     color: #9294A3;
     text-align: center;
 }
 
-/* Styling for the "Type your text here" text */
+
 .box-areaa p {
-    font-size: 1.2rem;  /* Make the instruction text slightly larger */
+    font-size: 1.2rem;  
     color: #555;
     text-align: center;
-    margin-bottom: 15px; /* Add space below the instruction */
+    margin-bottom: 15px; 
 }
 
-/* Adjust textarea styles */
 .textareaa {
     width: 100%;
     padding: 15px;
@@ -245,18 +244,16 @@ nav ul li a:hover::before{
   .speech-result {
     margin-top: 22  px;
     padding: 15px;
-    font-size: 1em; /* Corrected comma to period for the font size */
+    font-size: 1em; 
     text-align: center;
     background-color: #444;
     border: 1px solid #444;
     border-radius: 12px;
     max-width: 1000px;
     font-family: 'Poppins', sans-serif;
-
-    /* Adjust the height and overflow behavior */
-    max-height: 300px; /* Set max height for the results */
-    height: auto; /* Allows it to adjust depending on the content */
-    overflow-y: auto; /* Add a vertical scrollbar if content exceeds max-height */
+    max-height: 300px; 
+    height: auto; 
+    overflow-y: auto; 
 }
 
   
@@ -276,15 +273,15 @@ nav ul li a:hover::before{
 
   #language-select {
     padding: 10px;
-    margin-top: 15px; /* Gives space between label and dropdown */
+    margin-top: 15px; 
     font-size: 16px;
-    border: 1px solid #ccc; /* Border color */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; 
+    border-radius: 5px;
     background-color: #fff;
-    width: 200px; /* Set fixed width for consistency */
+    width: 200px; 
 }
 
-/* Container for file input */
+
 .file-upload-container {
   display: flex;
   flex-direction: column;
@@ -299,7 +296,6 @@ nav ul li a:hover::before{
   text-align: center;
 }
 
-/* Label to make the file input button look like a styled button */
 .file-upload-label {
   display: inline-block;
   background-color: #4CAF50;
@@ -312,14 +308,11 @@ nav ul li a:hover::before{
 }
 
 
-
-
-/* Hide the default file input */
 .file-upload-input {
   display: none;
 }
 
-/* File name display */
+
 .file-name {
   margin-top: 10px;
   font-size: 1.1em;
@@ -348,3 +341,9 @@ input[type="file"] {
 }
 
 
+.learn-title {
+  font-size: 3rem;
+  color: #9294A3;
+  text-align: center;
+  margin-top: 50px; 
+}

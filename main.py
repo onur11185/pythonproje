@@ -12,16 +12,13 @@ import aiohttp
 
 app = Flask(__name__)
 
-# Folder paths for both upload folders
-UPLOAD_FOLDER1 = 'static/uploads'  # First upload folder (for background removal)
-RESULT_FOLDER1 = 'static/results'  # First result folder (for background removal)
+UPLOAD_FOLDER1 = 'static/uploads'  
+RESULT_FOLDER1 = 'static/results'  
 
-# Create folders if they don't exist
 os.makedirs(UPLOAD_FOLDER1, exist_ok=True)
 os.makedirs(RESULT_FOLDER1, exist_ok=True)
 
 
-# Update app config to point to both folders
 app.config['UPLOAD_FOLDER1'] = UPLOAD_FOLDER1
 app.config['RESULT_FOLDER1'] = RESULT_FOLDER1
 
@@ -31,7 +28,7 @@ async def translate_async(text, source_language, target_language):
         url = f'https://api.mymemory.translated.net/get?q={text}&langpair={source_language}|{target_language}'
         async with session.get(url) as response:
             data = await response.json()
-            return data['responseData']['translatedText']  # Return the actual translated text
+            return data['responseData']['translatedText']  
 
 
 @app.route("/")
@@ -127,7 +124,6 @@ def translate():
         target_language = request.form['target_language']
         source_text = request.form['source_text']
         
-        # Call the synchronous translation function
         translated_text = translate_sync(source_text, source_language, target_language)
         
         return render_template('translate.html', 
