@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Translate Text</title>
+    <title>Translate</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/translate.css"> 
@@ -19,12 +19,16 @@
     <ul>
       <div class="menu"><span>MENU</span></div>
       <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
-      <li><a href="/summarize"><i class="fas fa-cogs"></i> Summarize</a></li>
+      <li><a href="/summarize"><i class="fas fa-search"></i> Summarize</a></li>
       <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+      <li><a href="/texttospeech"><i class="fas fa-volume-up"></i> Text To Speech</a></li>
       <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
       <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
-      <li><a href="/translate"><i class="fab fa-gripfire"></i> Translate</a></li>
+      <li><a href="/translate"><i class="fas fa-font"></i> Translate</a></li>
+      <li><a href="/analyzer"><i class="fas fa-chart-bar"></i> Text Analyzer</a></li>
+      <li><a href="/grammar"><i class="fas fa-spell-check"></i> Grammar Fixer</a></li>
       <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+      <li><a href="/settings"><i class="fas fa-cogs"></i> Settings</a></li>
     </ul>
   </nav>
 
@@ -40,12 +44,20 @@
             <select id="source-language" name="source_language">
               <option value="english">English</option>
               <option value="turkish">Turkish</option>
+              <option value="german">German</option>
+              <option value="spanish">Spanish</option>
+              <option value="french">French</option>
+              <option value="italian">Italian</option>
             </select>
 
             <label for="target-language">Target language:</label>
             <select id="target-language" name="target_language">
               <option value="english">English</option>
               <option value="turkish">Turkish</option>
+              <option value="german">German</option>
+              <option value="spanish">Spanish</option>
+              <option value="french">French</option>
+              <option value="italian">Italian</option>
             </select>
 
             <textarea id="text-to-translate" name="source_text" placeholder="Enter text to translate..." rows="4" required></textarea>
@@ -66,4 +78,26 @@
     </div>
   </div>
 </body>
+<script>
+  function applyTheme(theme) {
+      const oldStyle = document.getElementById('themeStylesheet');
+      if (oldStyle) {
+          oldStyle.remove();
+      }
+  
+      const newStyle = document.createElement('link');
+      newStyle.id = 'themeStylesheet';
+      newStyle.rel = 'stylesheet';
+      newStyle.href = `../static/css/themes/${theme}.css`; 
+  
+      document.head.appendChild(newStyle);
+  }
+  
+  window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('selectedTheme');
+      if (savedTheme) {
+          applyTheme(savedTheme);
+      }
+  });
+  </script>
 </html>

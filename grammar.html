@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech to Text</title>
+    <title>Grammar Fixer</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
@@ -28,36 +27,24 @@
   </nav>
 
   <div class="wrapper">
-    <div class="section">
-      <div class="box-area">
-        <h2 style="color: #9294A3">Speech to Text</h2>
-        <p>Choose the language from below and press go. Whatever you say will be written under the button.</p>
+      <div class="section">
+        <div class="box-area">
+          <h2 style="color: #9294A3; text-align: center;">Fix Your Grammar</h2>
+          <p style="text-align: center; font-size: 1.2rem; color: #555;">Paste your sentence below to correct its grammar:</p>
 
-        <form method="POST" action="/speechtotextt">
-          <div class="speech-settings">
-            <label for="language-select" style="color: #9294A3;">Choose language:</label>
-            <select id="language-select" name="language">
-              <option value="english" {% if language == 'english' %}selected{% endif %}>English</option>
-              <option value="turkish" {% if language == 'turkish' %}selected{% endif %}>Turkish</option>
-              <option value="german" {% if language == 'german' %}selected{% endif %}>German</option>
-              <option value="spanish" {% if language == 'spanish' %}selected{% endif %}>Spanish</option>
-              <option value="french" {% if language == 'french' %}selected{% endif %}>French</option>
-              <option value="italian" {% if language == 'italian' %}selected{% endif %}>Italian</option>
-            </select>
+          <form method="POST">
+            <textarea class="textareaa" name="text" rows="10" cols="80" placeholder="Paste your sentence here..." required>{{ text or '' }}</textarea><br><br>
+            <button type="submit">Fix Grammar</button>
+          </form>
 
-            <button type="submit" class="buttonnn">Enable Speech To Text</button>
-
-            {% if result %}
-            <div class="speech-result">
-              <h3 style="color: #fff;">You said: {{ result }}</h3>
-            </div>
-            {% endif %}
-          </div>
-        </form>
-        
+          {% if result %}
+            <h3>Corrected Sentence:</h3>
+            <p>{{ result }}</p>
+          {% endif %}
+        </div>
       </div>
-    </div>
   </div>
+
 </body>
 <script>
   function applyTheme(theme) {
@@ -80,6 +67,6 @@
           applyTheme(savedTheme);
       }
   });
-  </script>
+</script>
 
 </html>

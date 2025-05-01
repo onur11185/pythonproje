@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    
+    <link rel="stylesheet" href="../static/css/style.css"> 
+    <link rel="stylesheet" href="../static/css/settings.css"> 
+    <link id="themeStylesheet" rel="stylesheet" href=""> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <nav>
+    <ul>
+        <div class="menu"><span>MENU</span></div>
+        <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
+        <li><a href="/summarize"><i class="fas fa-search"></i> Summarize</a></li>
+        <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+        <li><a href="/texttospeech"><i class="fas fa-volume-up"></i> Text To Speech</a></li>
+        <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
+        <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
+        <li><a href="/translate"><i class="fas fa-font"></i> Translate</a></li>
+        <li><a href="/analyzer"><i class="fas fa-chart-bar"></i> Text Analyzer</a></li>
+        <li><a href="/grammar"><i class="fas fa-spell-check"></i> Grammar Fixer</a></li>
+        <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+        <li><a href="/settings"><i class="fas fa-cogs"></i> Settings</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrapper">
+      <div class="section">
+        <div class="box-area">
+            <h2 style="color: #9294A3;">Settings</h2>
+            <p>Customize your preferences below:</p>
+            <form method="POST" action="/settings">
+                <div class="settings-options">
+
+                    
+                    <div class="option">
+                        <label for="theme-preference">Choose Theme</label>
+                        <select id="theme-preference" name="theme_preference">
+                            <option value="dark-theme" {% if session.get('theme_preference') == 'dark-theme' %}selected{% endif %}>Dark Theme</option>
+                            <option value="light-theme" {% if session.get('theme_preference') == 'light-theme' %}selected{% endif %}>Light Theme</option>
+                            <option value="blue-theme" {% if session.get('theme_preference') == 'blue-theme' %}selected{% endif %}>Blue Theme</option>
+                            <option value="green-theme" {% if session.get('theme_preference') == 'green-theme' %}selected{% endif %}>Green Theme</option>
+                            <option value="purple-theme" {% if session.get('theme_preference') == 'purple-theme' %}selected{% endif %}>Purple Theme</option>
+                            <option value="red-theme" {% if session.get('theme_preference') == 'red-theme' %}selected{% endif %}>Red Theme</option>
+                            <option value="orange-theme" {% if session.get('theme_preference') == 'orange-theme' %}selected{% endif %}>Orange Theme</option>
+                            <option value="yellow-theme" {% if session.get('theme_preference') == 'yellow-theme' %}selected{% endif %}>Yellow Theme</option>
+                            <option value="pink-theme" {% if session.get('theme_preference') == 'pink-theme' %}selected{% endif %}>Pink Theme</option>
+                            <option value="aqua-theme" {% if session.get('theme_preference') == 'aqua-theme' %}selected{% endif %}>Aqua Theme</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="buttonnn">Save Settings</button>
+
+                    {% if saved %}
+                    <p style="color: green;">Settings saved successfully!</p>
+                    {% endif %}
+
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+<script>
+function applyTheme(theme) {
+    const oldStyle = document.getElementById('themeStylesheet');
+    if (oldStyle) {
+        oldStyle.remove();
+    }
+
+    const newStyle = document.createElement('link');
+    newStyle.id = 'themeStylesheet';
+    newStyle.rel = 'stylesheet';
+    newStyle.href = `../static/css/themes/${theme}.css`; 
+
+    document.head.appendChild(newStyle);
+}
+
+window.addEventListener('load', function() {
+    const savedTheme = localStorage.getItem('selectedTheme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+        document.getElementById('theme-preference').value = savedTheme;
+    }
+});
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    const selectedTheme = document.getElementById('theme-preference').value;
+    applyTheme(selectedTheme);
+    localStorage.setItem('selectedTheme', selectedTheme);
+});
+</script>
+
+</body>
+</html>

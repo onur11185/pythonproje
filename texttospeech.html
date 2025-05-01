@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text to Speech</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <ul>
+    <div class="menu"><span>MENU</span></div>
+    <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
+    <li><a href="/summarize"><i class="fas fa-search"></i> Summarize</a></li>
+    <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+    <li><a href="/texttospeech"><i class="fas fa-volume-up"></i> Text To Speech</a></li>
+    <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
+    <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
+    <li><a href="/translate"><i class="fas fa-font"></i> Translate</a></li>
+    <li><a href="/analyzer"><i class="fas fa-chart-bar"></i> Text Analyzer</a></li>
+    <li><a href="/grammar"><i class="fas fa-spell-check"></i> Grammar Fixer</a></li>
+    <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+    <li><a href="/settings"><i class="fas fa-cogs"></i> Settings</a></li>
+  </ul>
+</nav>
+
+<div class="wrapper">
+  <div class="section">
+    <div class="box-area">
+      <h2 style="color: #9294A3;">Text to Speech</h2>
+      <p>Type your text below, choose a language and voice, and press "Speak".</p>
+
+      <form onsubmit="event.preventDefault(); speak();">
+        <div class="tts-form">
+          <div class="dropdown-container">
+            <label for="languageSelect">Choose Language:</label>
+            <select id="languageSelect">
+              <option value="en">English</option>
+              <option value="tr">Turkish</option>
+              <option value="de">German</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="it">Italian</option>
+            </select>
+          </div>
+
+          <div class="dropdown-container">
+            <label for="voiceSelect">Choose Voice:</label>
+            <select id="voiceSelect">
+              <option>Loading voices...</option>
+            </select>
+          </div>
+
+          <textarea id="textInput" name="text" placeholder="Enter text here..." rows="12" required></textarea>
+
+          <button type="submit" class="buttonnn">Speak</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const languageSelect = document.getElementById("languageSelect");
+  const voiceSelect = document.getElementById("voiceSelect");
+  const textInput = document.getElementById("textInput");
+  let voices = [];
+
+  function loadVoices() {
+    voices = window.speechSynthesis.getVoices();
+    populateVoices(languageSelect.value);
+  }
+
+  function populateVoices(langPrefix) {
+    voiceSelect.innerHTML = '';
+    const filteredVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith(langPrefix));
+    if (filteredVoices.length === 0) {
+      voiceSelect.innerHTML = `<option>No voices found for ${langPrefix}</option>`;
+      return;
+    }
+    filteredVoices.forEach((voice, index) => {
+      const option = document.createElement("option");
+      option.value = index;
+      option.textContent = `${voice.name} (${voice.lang})`;
+      voiceSelect.appendChild(option);
+    });
+  }
+
+  languageSelect.addEventListener("change", () => {
+    populateVoices(languageSelect.value);
+  });
+
+  function speak() {
+    const utterance = new SpeechSynthesisUtterance(textInput.value);
+    const selectedVoice = voices[voiceSelect.value];
+    if (selectedVoice) utterance.voice = selectedVoice;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  } else {
+    alert("Sorry, your browser doesn't support Text to Speech.");
+  }
+</script>
+
+<script>
+  function applyTheme(theme) {
+    const oldStyle = document.getElementById('themeStylesheet');
+    if (oldStyle) oldStyle.remove();
+    const newStyle = document.createElement('link');
+    newStyle.id = 'themeStylesheet';
+    newStyle.rel = 'stylesheet';
+    newStyle.href = `../static/css/themes/${theme}.css`;
+    document.head.appendChild(newStyle);
+  }
+
+  window.addEventListener('load', function () {
+    const savedTheme = localStorage.getItem('selectedTheme');
+    if (savedTheme) applyTheme(savedTheme);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,413 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #2f1b57;
+  color: #e7e7e7;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 320px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #3e1f7d;
+}
+
+nav ul li a {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 22px;
+  color: #e7e7e7;
+  position: relative;
+  padding: 25px 0 25px 25px;
+}
+
+nav ul li a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgb(65, 65, 65);
+  border-radius: 40px 0 0 40px;
+  z-index: -1;
+  transition: all 500ms ease-in-out;
+}
+
+nav ul li a:hover {
+  color: #ffffff;
+}
+
+nav ul li a:hover::before {
+  width: 95%;
+}
+
+.wrapper {
+  margin-left: 260px;
+}
+
+.section {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.box-area h2 {
+  text-transform: uppercase;
+  font-size: 50px;
+  color: #e7e7e7;
+}
+
+.box-area {
+  width: 75%;
+  background-color: #3e1f7d;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin: 25px auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.menu {
+  width: 100%;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.menu span {
+  font-size: 70px;
+  color: rgb(226, 226, 226);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.nst {
+  position: absolute;
+  left: 56%;
+  top: 5%;
+  transform: translate(-50%, -50%);
+  color: rgb(200, 200, 200);
+  font-size: 3rem;
+}
+
+.nst2 {
+  position: absolute;
+  left: 45%;
+  top: 17%;
+  transform: translate(-50%, -50%);
+  color: rgb(180, 180, 180);
+  font-size: 1.5rem;
+  max-width: 200%;
+  line-height: 1.6;
+  word-break: break-word;
+  margin: 0 auto;
+}
+
+.welcome-title {
+  font-size: 3rem;
+  color: #e7e7e7;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.welcome-desc {
+  font-size: 1.5rem;
+  color: #ccc;
+  line-height: 1.8;
+  text-align: justify;
+  margin: 20px auto;
+  max-width: 1475px;
+}
+
+.explanationss {
+  font-size: 1.5rem;
+  font-weight: 250;
+  color: #ccc;
+  margin: 60px 0;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-left: 20px;
+  padding-top: 25px;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  background-color: #3e1f7d;
+  color: #e7e7e7;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  background-color: #5c2d91;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #7037b6;
+}
+
+.box-areaa h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #9294A3;
+  text-align: center;
+}
+
+.box-areaa p {
+  font-size: 1.2rem;
+  color: #e7e7e7;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.textareaa {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  background-color: #3e1f7d;
+  color: #e7e7e7;
+}
+
+.buttonnn {
+  background-color: #5c5d9c;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonnn:hover {
+  background-color: #6a66b3;
+}
+
+.speech-settings {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.speech-result {
+  margin-top: 22px;
+  padding: 15px;
+  font-size: 1em;
+  text-align: center;
+  background-color: #5c2d91;
+  border: 1px solid #5c2d91;
+  border-radius: 12px;
+  max-width: 1000px;
+  font-family: 'Poppins', sans-serif;
+  max-height: 300px;
+  height: auto;
+  overflow-y: auto;
+}
+
+.speech-result h3 {
+  margin: 0;
+  color: #f4f4f4;
+  font-size: 20px;
+}
+
+.speech-result p {
+  color: #bdbdbd;
+  font-size: 16px;
+  margin-top: 10px;
+  word-wrap: break-word;
+}
+
+#language-select {
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #3e1f7d;
+  width: 200px;
+  color: #e7e7e7;
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px dashed #555;
+  border-radius: 12px;
+  background-color: #3e1f7d;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.file-upload-label {
+  display: inline-block;
+  background-color: #5c2d91;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #e7e7e7;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: #5c2d91;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #7037b6;
+}
+
+.learn-title {
+  font-size: 3rem;
+  color: #9294A3;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Settings options container */
+.settings-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual setting option (checkboxes or selects) */
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  color: #e7e7e7;
+  margin-bottom: 15px;
+}
+
+/* Style for checkboxes */
+.option input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+/* Style for select dropdown */
+.option select {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #3e1f7d;
+  color: #e7e7e7;
+  cursor: pointer;
+}
+
+/* Hover effects for selects and checkboxes */
+.option input[type="checkbox"]:hover {
+  background-color: #3e1f7d;
+}
+
+.option select:hover {
+  border-color: #9b6ed5;
+}
+
+/* Checked state styling for checkboxes */
+.option input[type="checkbox"]:checked {
+  background-color: #9b6ed5;
+  border-color: #9b6ed5;
+}
+
+/* Focus state for select dropdown */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.dropdown-container label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+#languageSelect,
+#voiceSelect {
+  font-size: 16px;
+  padding: 12px 16px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #3e1f7d;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+}

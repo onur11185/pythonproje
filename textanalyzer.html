@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech to Text</title>
+    <title>Text Analyzer</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/style.css">
@@ -28,36 +28,31 @@
   </nav>
 
   <div class="wrapper">
-    <div class="section">
-      <div class="box-area">
-        <h2 style="color: #9294A3">Speech to Text</h2>
-        <p>Choose the language from below and press go. Whatever you say will be written under the button.</p>
+      <div class="section">
+        <div class="box-area">
+          <h2 style="color: #9294A3; text-align: center;">Analyze Your Text</h2>
+          <p style="text-align: center; font-size: 1.2rem; color: #555;">Paste your text here:</p>
 
-        <form method="POST" action="/speechtotextt">
-          <div class="speech-settings">
-            <label for="language-select" style="color: #9294A3;">Choose language:</label>
-            <select id="language-select" name="language">
-              <option value="english" {% if language == 'english' %}selected{% endif %}>English</option>
-              <option value="turkish" {% if language == 'turkish' %}selected{% endif %}>Turkish</option>
-              <option value="german" {% if language == 'german' %}selected{% endif %}>German</option>
-              <option value="spanish" {% if language == 'spanish' %}selected{% endif %}>Spanish</option>
-              <option value="french" {% if language == 'french' %}selected{% endif %}>French</option>
-              <option value="italian" {% if language == 'italian' %}selected{% endif %}>Italian</option>
-            </select>
+          <form method="POST">
+            <textarea class="textareaa" name="text" rows="10" cols="80" placeholder="Paste your text here..." required></textarea><br><br>
+            <button type="submit">Analyze Text</button>
+          </form>
 
-            <button type="submit" class="buttonnn">Enable Speech To Text</button>
-
-            {% if result %}
-            <div class="speech-result">
-              <h3 style="color: #fff;">You said: {{ result }}</h3>
-            </div>
-            {% endif %}
-          </div>
-        </form>
-        
+          {% if word_count %}
+            <h3>Word Count: {{ word_count }}</h3>
+            <h3>Sentence Count: {{ sentence_count }}</h3>
+            <h3>Average Sentence Length: {{ avg_sentence_length }} words</h3>
+            <h3>Most Used Words:</h3>
+            <ul>
+              {% for word in most_used_words %}
+                <li>{{ word }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
       </div>
-    </div>
   </div>
+
 </body>
 <script>
   function applyTheme(theme) {

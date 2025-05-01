@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use AI features</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <link id="themeStylesheet" rel="stylesheet" href=""> <!-- The theme will be loaded dynamically here -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
   <nav>
     <ul>
       <div class="menu"><span>MENU</span></div>
       <li><a href="/"><i class="fab fa-gripfire"></i> Dashboard</a></li>
-      <li><a href="/summarize"><i class="fas fa-cogs"></i> Summarize</a></li>
+      <li><a href="/summarize"><i class="fas fa-search"></i> Summarize</a></li>
       <li><a href="/speechtotext"><i class="fas fa-tv"></i> Speech To Text</a></li>
+      <li><a href="/texttospeech"><i class="fas fa-volume-up"></i> Text To Speech</a></li>
       <li><a href="/changebackround"><i class="far fa-folder"></i> Change Background</a></li>
       <li><a href="/deletebackround"><i class="far fa-address-book"></i> Delete Background</a></li>
-      <li><a href="/translate"><i class="fab fa-gripfire"></i> Translate</a></li>
+      <li><a href="/translate"><i class="fas fa-font"></i> Translate</a></li>
+      <li><a href="/analyzer"><i class="fas fa-chart-bar"></i> Text Analyzer</a></li>
+      <li><a href="/grammar"><i class="fas fa-spell-check"></i> Grammar Fixer</a></li>
       <li><a href="/learn"><i class="far fa-comments"></i> Learn More</a></li>
+      <li><a href="/settings"><i class="fas fa-cogs"></i> Settings</a></li>
     </ul>
   </nav>
 
@@ -31,15 +37,41 @@
           This website provides a collection of free AI tools that simplify your everyday tasks — from summarizing text and translating speech to removing image backgrounds and recognizing objects. It's fast, useful, and completely free. You can read the explanations of the sites right under this text.
 
           
-          <h3 class="explanationss">Summarize: On this page, you can paste or write your text and get a summarized and shorter version of your text.</h2>
-          <h3 class="explanationss">Speech To Text: On this page, you can say anything to your microphone and the AI detects and writes it.</h2>
-          <h3 class="explanationss">Change Backround: On this page, you can change a backround of a png image.</h2>
-          <h3 class="explanationss">Delete Backround: On this page, you can delete a images backround and make it a png.</h2>
-          <h3 class="explanationss">Translate: On this page, you can enter your text to translate it to another language of your choice.</h2>
+          <h3 class="explanationss">Summarize: Paste or write your text and get a summarized and shorter version of your text.</h2>
+          <h3 class="explanationss">Speech To Text: Say anything to your microphone and the AI detects & writes it!</h2>
+          <h3 class="explanationss">Text To Speech: Write anything you want, change the voice & language and make AI speak.</h2>
+          <h3 class="explanationss">Change Backround: Put the png you wanna change backround, and the backround, AI will do the rest.</h2>
+          <h3 class="explanationss">Delete Backround: Put your image, the AI will delete its backround for you.</h2>
+          <h3 class="explanationss">Translate: Enter your text, select language the texts is and the language you wanna change it. </h2>
+          <h3 class="explanationss">Text Analyzer: Paste your text to get its analyzement, such as "word count" and more.</h2>
+          <h3 class="explanationss">Grammar Fixer: Write your text with broken grammar, AI will fix it.</h2>
           <h3 class="explanationss">Learn More: On this page, there is information about me and my socials.</h2>
+          <h3 class="explanationss">Settings: You can change the sites theme from here.</h2>
         </p>
       </div>
     </div>
   </div>
 </body>
+<script>
+  function applyTheme(theme) {
+      const oldStyle = document.getElementById('themeStylesheet');
+      if (oldStyle) {
+          oldStyle.remove();
+      }
+  
+      const newStyle = document.createElement('link');
+      newStyle.id = 'themeStylesheet';
+      newStyle.rel = 'stylesheet';
+      newStyle.href = `../static/css/themes/${theme}.css`; 
+  
+      document.head.appendChild(newStyle);
+  }
+
+  window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('selectedTheme');
+      if (savedTheme) {
+          applyTheme(savedTheme);
+      }
+  });
+  </script>
 </html>

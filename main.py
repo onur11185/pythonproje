@@ -1,14 +1,19 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, session
 from transformers import pipeline
 import requests
 import os
 from rembg import remove
-from recognition import detectEnglish, detectTurkish
+from recognition import detectEnglish, detectTurkish, detectGerman, detectFrench, detectItalian, detectSpanish
 from changebacckround import change_background
 from werkzeug.utils import secure_filename
 from googletrans import Translator
 import asyncio
 import aiohttp
+import string
+import openai
+import language_tool_python 
+from collections import Counter
+import re
 
 app = Flask(__name__)
 
@@ -21,6 +26,10 @@ os.makedirs(RESULT_FOLDER1, exist_ok=True)
 
 app.config['UPLOAD_FOLDER1'] = UPLOAD_FOLDER1
 app.config['RESULT_FOLDER1'] = RESULT_FOLDER1
+
+
+openai.api_key = ''
+
 
 
 async def translate_async(text, source_language, target_language):
@@ -54,10 +63,25 @@ def speechtotext():
 
 @app.route("/speechtotextt", methods=["POST"])
 def speechtotexttt():
-    selected_language = request.form.get("hidden_language", "english")
-    result = detectEnglish() if selected_language == "english" else detectTurkish()
+    language_detect_function = {
+        "english": detectEnglish,
+        "turkish": detectTurkish,
+        "german": detectGerman,
+        "spanish": detectSpanish,
+        "french": detectFrench,
+        "italian": detectItalian
+    }
+
+    selected_language = request.form.get("language", "english")
+
+    result = language_detect_function.get(selected_language, lambda: "Language not supported.")()
+
     return render_template("speechtotext.html", language=selected_language, result=result)
 
+
+@app.route('/texttospeech')
+def text_to_speech():
+    return render_template('texttospeech.html')
 
 
 @app.route("/changebackround", methods=["GET", "POST"])
@@ -141,9 +165,106 @@ def translate_sync(text, source_language, target_language):
     return data['responseData']['translatedText']
 
 
+
+@app.route("/analyzer", methods=["GET", "POST"])
+def analyze_text():
+    if request.method == "POST":
+        text = request.form["text"]
+
+        word_count = len(text.split())
+
+        sentence_count = text.count('.') + text.count('!') + text.count('?')
+
+
+        sentences = text.split('.')
+        total_words = sum(len(sentence.split()) for sentence in sentences)
+        avg_sentence_length = total_words / len(sentences) if len(sentences) > 0 else 0
+
+        text = text.lower()
+        text = text.translate(str.maketrans('', '', string.punctuation))
+        words = text.split()
+
+        stopwords = set(["the", "and", "a", "to", "of", "in", "on", "for", "with", "that", "this", "is", "it"])
+        words = [word for word in words if word not in stopwords]
+        most_common = Counter(words).most_common(5)
+
+        most_used_words = [word for word, _ in most_common]
+
+        return render_template("textanalyzer.html", 
+                               word_count=word_count, 
+                               sentence_count=sentence_count, 
+                               avg_sentence_length=avg_sentence_length, 
+                               most_used_words=most_used_words)
+    
+    return render_template("textanalyzer.html")  
+
+
+
+
 @app.route("/learn")
 def learn():
     return render_template("learnmore.html")
+
+
+
+
+@app.route('/grammar', methods=['GET', 'POST'])
+def grammar():
+    if request.method == 'POST':
+        user_text = request.form['text']
+        corrected_text = user_text
+        num_issues = 0
+        detected_issues_names = []
+
+        try:
+            prompt = f"Correct the grammar, punctuation, and structure of the following sentence:\n\n{user_text}"
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a grammar correction assistant."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            corrected_text = response['choices'][0]['message']['content'].strip()
+            detected_issues_names.append("Corrected using GPT-3.5 Turbo")
+
+        except Exception as e:
+            try:
+                tool = language_tool_python.LanguageTool('en-US')
+                matches = tool.check(user_text)
+                corrected_text = language_tool_python.utils.correct(user_text, matches)
+                num_issues = len(matches)
+                detected_issues_names = list(set(match.ruleIssueType for match in matches))
+                detected_issues_names.insert(0, "Corrected using LanguageTool")
+
+            except Exception as fallback_error:
+                corrected_text = f"Both correction methods failed: {str(fallback_error)}"
+
+        return render_template('grammar.html',
+                               result=corrected_text,
+                               text=user_text,
+                               num_issues=num_issues,
+                               detected_issues=detected_issues_names)
+
+    return render_template('grammar.html')
+
+
+
+
+
+
+@app.route("/settings", methods=["GET", "POST"])
+def settings():
+    if request.method == "POST":
+        language_preference = request.form.get("language_preference")
+        theme_preference = request.form.get("theme_preference")
+        
+        session['language_preference'] = language_preference
+        session['theme_preference'] = theme_preference
+
+        return render_template("settings.html", saved=True)
+    
+    return render_template("settings.html")
 
 
 if __name__ == "__main__":
